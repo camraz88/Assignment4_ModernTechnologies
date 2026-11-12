@@ -41,19 +41,23 @@ Your task is to containerize this existing application using Docker. You need to
 - To build the docker image run the command:
 
 ```bash
+docker build -t node-docker-app .
 
 ```
 
 - To run your docker container in port 3000 run the command:
 
 ```bash
-
+docker run -d -p 3000:3000 --name node-app node-docker-app.
 ```
+- Then open `http://localhost:3000` in your browser.
 
 ## Reflection Question
 **Answer the following question in the space below**: How does containerization with Docker differ from using virtual machines, and why might a development team choose Docker containers over VMs for deploying applications like the one you just containerized?
 
+A virtual machine runs a complete operating sysyem on top of virtualized hardware. So every VM carries the weight of itts own OS. That makes VMs rely more of memory and storage and they can also take minutes to boot up. Docker containers work very differently. They share the host machine's operating system kernal and only package what the application actually needs. Which is the runtime, the dependencies and the code. Containers tend to be lightweight, start in seconds, and still keep each application seperated from everything else running on the machine.
 
+For an app like the one I characterized I think Docker is the better choice. The biggest thing that I noticed is that I ran Node.js app without ever installing Node on my computer. The image brought its own runtime with it so the app ran the exact way it was built. For a development team consistency is huge. Everyone works in the same environment which takes care of the "it works on my machine" issue. The same image can then move from a laptop to a test server to the cloud without any changes. It also makes onboarding go so much quicker. As a team lead at HeyDude I know how much smoother things go when a new person can get up to speed quickly instead of spending their first few dats figuring out what to do. Docker does the same for developers since a new teammate can run the whole app with a couple of commands. Managing containers was simple too. With "Docker Stop" and "Docker Start" I could shut down the app and bring it back without reconfiguring anything.
 
 ## Application Requirements for Docker
 
